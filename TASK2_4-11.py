@@ -53,7 +53,7 @@ if MONTH_INPUT in DATA_MONTHS:
     # Leap check
     if YearAuth(YEAR_INPUT) == True:
         DATA_MONTHS[2] = 29
-    print(MONTHS_NAME[MONTH_INPUT], "in", YEAR_INPUT, "is", DATA_MONTHS[MONTH_INPUT], "days")
+    print(MONTHS_NAME[MONTH_INPUT], "in", YEAR_INPUT, "has", DATA_MONTHS[MONTH_INPUT], "days")
 else:
     print("This is earth. not Jupiter.")
     
