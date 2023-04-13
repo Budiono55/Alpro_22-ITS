@@ -3,8 +3,11 @@
 num1, num2, num3 = map(eval, (input("Enter three numbers:").split()))
 
 def sorted(num1, num2, num3):
-    print("handsome")
+    nums = [num1, num2, num3]
+    nums.sort(reverse=True)
+    return nums
 
-print(sorted(num1, num2, num3))
-print(num1, num2, num3)
+numbers = sorted(num1, num2, num3)
+print("the sorted numbers are ", numbers[0], numbers[1], numbers[2])
+
 
