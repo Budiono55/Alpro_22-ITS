@@ -1,4 +1,6 @@
-#6.5 
+# Zaki Zaidan Akbar
+# 5007221058
+# INTRO TO PROGRAMMING USING PYTHON 6.5 
 
 num1, num2, num3 = map(eval, (input("Enter three numbers:").split()))
 
