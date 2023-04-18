@@ -2,7 +2,7 @@
 # 5007221058
 # INTRO TO PROGRAMMING USING PYTHON 6.5 
 
-num1, num2, num3 = map(eval, (input("Enter three numbers:").split()))
+num1, num2, num3 = map(eval, (input("Enter three numbers (with spaces, not comma):").split()))
 
 def sorted(num1, num2, num3):
     nums = [num1, num2, num3]
