@@ -3,11 +3,12 @@ import turtle
 name = turtle.Turtle()
 
 name.reset()
-name.pencolor('black')
+name.pencolor('white')
 name.pensize(5)
 name.penup()
 name.goto(-300,200)
-name.speed(1)
+name.speed(3)
+
 
 #Z
 name.pendown()
@@ -42,5 +43,17 @@ name.goto(0, 200)
 name.goto(-50, 150)
 name.goto(0, 100)
 
+name.penup()
+name.rt(90)
+name.fd(30)
 
-name.mainloop()
+#I
+name.pendown()
+name.lt(90)
+name.fd(100)
+name.bk(100)
+
+
+
+turtle.bgcolor('black')
+turtle.done()
