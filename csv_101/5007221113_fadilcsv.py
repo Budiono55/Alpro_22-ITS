@@ -12,14 +12,14 @@ dx = 0.5
 
 
 #field = ["x", "y", "dydx", "d2ydx2"]
-filecsv='5007221113_kode.csv'
-with open('/5007221113_kode.csv', 'w', newline='') as f:
+filecsv='5007221113_kode2222.csv'
+with open('/5007221113_kode2222.csv', 'w', newline='') as f:
     name = ["x", "y", "dydx", "d2ydx2"]
     writer = csv.writer(f)
     writer.writerow(name)
     while x <= 20:
-        y = 1/4*x*4-2/3*x*3+2*x-5
-        dydx = x*3-2*x*2+8*x+2
+        y = 1/4*x**4-2/3*x**3+2*x-5
+        dydx = x**3-2*x**2+8*x+2
         d2ydx2 = 3*x**2-4*x+8
         result= [x,y,dydx,d2ydx2] 
 
