@@ -72,6 +72,20 @@ for(text, mode) in mode.items():
                 value = mode, indicator = 0,
                 background="white").pack(fill = X, ipady = 5)
 
+#print(len(user_p))
+# password= shuffle(pasmedium())
+# print(pasmedium())
+# print(password)
+
+# print(mode["Hard"])
+
+
+label = ttk.Label(
+    root, 
+    text= mode["Hard"],
+    font=("Arial Baltic",10)).pack(ipadx=100, ipady=10)
+
+
 #------------------------------------------------------------------
 #Email entry frame
 email = tk.StringVar()
@@ -87,16 +101,6 @@ email_entry.pack(fill='x', expand=False)
 email_entry.focus()
 #------------------------------------------------------------------
 
-#print(len(user_p))
-# password= shuffle(pasmedium())
-# print(pasmedium())
-# print(password)
 
-# print(mode["Hard"])
-
-label = ttk.Label(
-    root, 
-    text= 'Password generated:',
-    font=("Arial Baltic",10)).pack(ipadx=100, ipady=10)
 
 mainloop()
