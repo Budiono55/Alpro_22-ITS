@@ -57,16 +57,16 @@ value = {
     "Hard":pashard()
 }
 
-# for(text, value) in value.items():
-#     Radiobutton(root, text = text, variable = v,
-#                 value = value, indicator = 0,
-#                 background="white").pack(fill = X, ipady = 5)
+for(text, value) in value.items():
+    Radiobutton(root, text = text, variable = v,
+                value = value, indicator = 0,
+                background="white").pack(fill = X, ipady = 5)
 
 #print(len(user_p))
 # password= shuffle(pasmedium())
 # print(pasmedium())
 # print(password)
 
-print(value["Easy"])
+print(value["Hard"])
 
-#mainloop()
+mainloop()
