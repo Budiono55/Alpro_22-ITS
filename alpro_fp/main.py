@@ -1,5 +1,7 @@
 import random
+import tkinter as tk
 from tkinter import *
+from tkinter import ttk
 
 length = 0
 p_short = 8
@@ -8,7 +10,15 @@ p_hard = 14
 p_num = 4
 
 root = Tk()
-root.geometry("175x175")
+root.title('Password Generator')
+root.resizable(False, False)
+root.geometry("500x300")
+root.iconbitmap('alpro_fp\passgen_icon.ico')
+
+label = ttk.Label(
+    root, 
+    text= 'Password Generator',
+    font=("Arial Baltic",12)).pack(ipadx=5, ipady=5)
 
 #Everyday iam Shuffleeeeeing
 def shuffle(string):
@@ -62,11 +72,31 @@ for(text, mode) in mode.items():
                 value = mode, indicator = 0,
                 background="white").pack(fill = X, ipady = 5)
 
+#------------------------------------------------------------------
+#Email entry frame
+email = tk.StringVar()
+signin = ttk.Frame(root)
+signin.pack(padx=10, pady=10, fill='x', expand=True)
+
+#Email entry box
+email_label = ttk.Label(signin, text="Email Address:")
+email_label.pack(fill='x', expand=False)
+
+email_entry = ttk.Entry(signin, textvariable=email)
+email_entry.pack(fill='x', expand=False)
+email_entry.focus()
+#------------------------------------------------------------------
+
 #print(len(user_p))
 # password= shuffle(pasmedium())
 # print(pasmedium())
 # print(password)
 
 # print(mode["Hard"])
+
+label = ttk.Label(
+    root, 
+    text= 'Password generated:',
+    font=("Arial Baltic",10)).pack(ipadx=100, ipady=10)
 
 mainloop()
