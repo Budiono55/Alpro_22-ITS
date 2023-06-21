@@ -51,15 +51,15 @@ def pashard():
 
 v = StringVar(root, "1")
 
-value = {
+mode = {
     "Easy":passhort(),
     "Medium":pasmedium(),
     "Hard":pashard()
 }
 
-for(text, value) in value.items():
+for(text, mode) in mode.items():
     Radiobutton(root, text = text, variable = v,
-                value = value, indicator = 0,
+                value = mode, indicator = 0,
                 background="white").pack(fill = X, ipady = 5)
 
 #print(len(user_p))
@@ -67,6 +67,6 @@ for(text, value) in value.items():
 # print(pasmedium())
 # print(password)
 
-print(value["Hard"])
+# print(mode["Hard"])
 
 mainloop()
