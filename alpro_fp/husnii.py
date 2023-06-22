@@ -2,6 +2,7 @@ import random
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
+import yagmail
 
 length = 0
 p_short = 8
@@ -13,7 +14,7 @@ root = Tk()
 root.title('Password Generator')
 root.resizable(False, False)
 root.geometry("500x300")
-# root.iconbitmap('alpro_fp/passgen_icon.ico')
+#root.iconbitmap('alpro_fp/passgen_icon.ico')
 
 label = ttk.Label(
     root,
@@ -78,7 +79,7 @@ signin = ttk.Frame(root)
 signin.pack(padx=10, pady=10, fill='x', expand=True)
 
 # Email entry box
-email_label = ttk.Label(signin, text="Email Address:")
+email_label = ttk.Label(signin, text="Email Address (@gmail): ")
 email_label.pack(fill='x', expand=False)
 
 email_entry = ttk.Entry(signin, textvariable=email)
@@ -91,7 +92,7 @@ password_label = ttk.Label(
     text='Password generated:',
     font=("Arial Baltic", 10)
 )
-password_label.pack(ipadx=100, ipady=10)
+password_label.pack(ipadx=100, ipady=5)
 
 def generate_password():
     mode_selected = v.get()
@@ -100,6 +101,17 @@ def generate_password():
         password_label.config(text=f"Password generated: {password}")
     else:
         password_label.config(text="Invalid mode selected")
+    return password
+
+def send_password():
+    yag = yagmail.SMTP('zakizaidan305@gmail.com', 'duebgqaxtvqrxedf')
+    
+    contents= [
+        f"Thank you for using our service, here is your generated password: {generate_password()}"
+    ]
+    yag.send(email.get(), 'PassGen', contents)
+    print(email.get())
+    print("Sent!")
 
 generate_button = ttk.Button(
     root,
@@ -107,5 +119,12 @@ generate_button = ttk.Button(
     command=generate_password
 )
 generate_button.pack(pady=10)
+
+send_button = ttk.Button(
+    root,
+    text= "Send",
+    command= send_password
+)
+send_button.pack(pady= 0)
 
 root.mainloop()
