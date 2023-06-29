@@ -68,6 +68,7 @@ button_calculate.pack()
 # Tombol untuk save
 button_save = tk.Button(window, text="SIMPAN", command=calculate)
 button_save.pack()
+
 # Label untuk menampilkan hasil perhitungan
 label_height = tk.Label(window)
 label_height.pack()
