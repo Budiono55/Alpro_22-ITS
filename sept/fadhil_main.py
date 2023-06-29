@@ -11,21 +11,22 @@ def calculate():
         gravitasi = 9.8
         
         # Menghitung ketinggian maksimum
-        ketinggian_maksimum = (kecepatan_tembak**2 * np.sin(np.radians(sudut_tembak))) / 2*gravitasi #rumus masih ngasal
+        ketinggian_maksimum = ((kecepatan_tembak*2) * (np.sin(sudut_tembak)*2)) / (2*gravitasi) #rumus masih ngasal
         
         # Menghitung jarak maksimum
-        jarak_maksimum = (kecepatan_tembak ** 2 * np.sin(2 * np.radians(sudut_tembak))) / gravitasi #rumus masih ngasal
+        jarak_maksimum = ((kecepatan_tembak ** 2) * np.sin(2*sudut_tembak)) / gravitasi #rumus masih ngasal
         
         # Menampilkan hasil pada label
         label_height.config(text=f"ketinggian maksimum: {ketinggian_maksimum:.2f} m")
         label_distance.config(text=f"jarak maksimum: {jarak_maksimum:.2f} m")
         
         # Membuat array jarak maksimum dan ketinggian maksimum
-        jarak = np.linspace(0, jarak_maksimum, num=100)
-        ketinggian = kecepatan_tembak * np.sin(np.radians(sudut_tembak)) * jarak - 0.5 * gravitasi * jarak ** 2
+        jarak = np.linspace(0, jarak_maksimum,1000)
+        ketinggian = kecepatan_tembak * np.sin(np.radians(sudut_tembak)) * (jarak - 0.5) * gravitasi * jarak ** 2
         
         # Membuat grafik
-        plt.plot(jarak, ketinggian)
+        plt.plot(jarak, ketinggian, color='b')
+        plt.plot(-jarak, ketinggian, color='b')
         plt.xlabel('jarak tempuh (m)')
         plt.ylabel('KETINGGIAN (m)')
         plt.title('GRAFIK GERAK PELURU')
@@ -64,6 +65,9 @@ entry_sudut_tembak.pack()
 button_calculate = tk.Button(window, text="HITUNG!!!", command=calculate)
 button_calculate.pack()
 
+# Tombol untuk save
+button_save = tk.Button(window, text="SIMPAN", command=calculate)
+button_save.pack()
 # Label untuk menampilkan hasil perhitungan
 label_height = tk.Label(window)
 label_height.pack()

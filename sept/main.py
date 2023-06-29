@@ -6,6 +6,7 @@ from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,
 NavigationToolbar2Tk)
 import numpy as np
+import csv
 
 
 GRAVITASI = 9.8
@@ -45,7 +46,7 @@ entry_sudut_tembak = tk.Entry(root)
 entry_sudut_tembak.pack()
 
 #result tab
-KM_res = tk.Label(root, text= "Kecepatan Max")
+KM_res = tk.Label(root, text= "Ketinggian max")
 KM_res.pack()
 KM_entry = tk.Entry(root)
 KM_entry.pack()
@@ -58,10 +59,34 @@ JM_entry.pack()
 
 
 def OUTPUT():
+    KECEPATAN_TEMBAK = float(entry_velocity.get())
+    SUDUT = float(entry_sudut_tembak.get())
+    
+    KM_results = KETINGGIAN_MAX(KECEPATAN_TEMBAK, SUDUT)
+    JM_results = JARAK_MAX(KECEPATAN_TEMBAK, SUDUT)
+    #menghitung ketinggian maksimum
+    ketinggian_maksimum = ((KECEPATAN_TEMBAK*2) * (np.sin(SUDUT)*2)) / (2*GRAVITASI) #rumus masih ngasal
+        
+    # Menghitung jarak maksimum
+    jarak_maksimum = ((KECEPATAN_TEMBAK ** 2) * np.sin(2*SUDUT)) / GRAVITASI #rumus masih ngasal
+        
+    
+    # Membuat array jarak maksimum dan ketinggian maksimum
+    jarak = np.linspace(0, jarak_maksimum,1000)
+    ketinggian = KECEPATAN_TEMBAK * np.sin((SUDUT)) * (jarak - 0.5) * GRAVITASI * (jarak ** 2)
     # CSV data ------------------------------------------------------------------------------------------------
-    print("haii")
+    with open('data_hasil.csv', 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(['jarak', 'ketinggian'])
+            for t, pos in zip(jarak, ketinggian):
+                writer.writerow([t, pos])
+    
+    print("tersimpan")
 
 def plot():
+    # reset plot
+    # Figure().clear()
+
     # Result of calculation code ------------------------------------------------------------------------------
     KECEPATAN_TEMBAK = float(entry_velocity.get())
     SUDUT = float(entry_sudut_tembak.get())
@@ -85,12 +110,23 @@ def plot():
     # Plotting CODE --------------------------------------------------------------------------------------------
     fig = Figure(figsize=(5,5), dpi=100)
     
-    x = np.linspace(0, 10, 1000)
-    y = KECEPATAN_TEMBAK * np.sin(np.radians(SUDUT)) * (x - 0.5) * GRAVITASI * (x ** 2)
-    # y= x**2 + 2*x + 2
+    # Menghitung ketinggian maksimum
+    ketinggian_maksimum = ((KECEPATAN_TEMBAK*2) * (np.sin(SUDUT)*2)) / (2*GRAVITASI) 
+        
+    # Menghitung jarak maksimum
+    jarak_maksimum = ((KECEPATAN_TEMBAK ** 2) * np.sin(2*SUDUT)) / GRAVITASI 
+        
+    
+    # Membuat array jarak maksimum dan ketinggian maksimum
+    jarak = np.linspace(0, jarak_maksimum,1000)
+    ketinggian = KECEPATAN_TEMBAK * np.sin((SUDUT)) * (jarak - 0.5) * GRAVITASI * (jarak ** 2)
 
     plot1 = fig.add_subplot(111)
-    plot1.plot(x,y, color= 'b')
+
+    plot1.plot(jarak, ketinggian, color='b')
+    plot1.plot(-jarak, ketinggian, color='b')
+    plot1.grid(True)
+    # plot1.plot(x,y, color= 'b')
 
     canvas = FigureCanvasTkAgg(fig, master=root)
     canvas.draw()
