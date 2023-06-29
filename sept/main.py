@@ -58,6 +58,11 @@ JM_entry.pack()
 
 
 def OUTPUT():
+    # CSV data ------------------------------------------------------------------------------------------------
+    print("haii")
+
+def plot():
+    # Result of calculation code ------------------------------------------------------------------------------
     KECEPATAN_TEMBAK = float(entry_velocity.get())
     SUDUT = float(entry_sudut_tembak.get())
     
@@ -76,33 +81,32 @@ def OUTPUT():
     JM_entry.insert(3,JM_results)
 
     CalcRes = [KM_results, JM_results]
-    return CalcRes
-
-def plot():
-    fig = Figure(figsize= {5,5},
-                dpi = 100)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
     
-    y = [i**2 for i in range(101)]
+    # Plotting CODE --------------------------------------------------------------------------------------------
+    fig = Figure(figsize=(5,5), dpi=100)
+    
+    x = np.linspace(0, 10, 1000)
+    y = KECEPATAN_TEMBAK * np.sin(np.radians(SUDUT)) * (x - 0.5) * GRAVITASI * (x ** 2)
+    # y= x**2 + 2*x + 2
 
     plot1 = fig.add_subplot(111)
+    plot1.plot(x,y, color= 'b')
 
-    plot1.plot(y)
-
-    canvas = FigureCanvasTkAgg(fig,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-                            master=root)
+    canvas = FigureCanvasTkAgg(fig, master=root)
     canvas.draw()
     canvas.get_tk_widget().pack()
-    toolbar = NavigationToolbar2Tk(canvas,
-                                root)
+    toolbar = NavigationToolbar2Tk(canvas,root)
     toolbar.update()
     canvas.get_tk_widget().pack()
+
+    return CalcRes
 
 # plot button
 plot_button = tk.Button(master = root,
 					command = plot,
 					height = 2,
 					width = 10,
-					text = "Plot")
+					text = "Result")
 
 plot_button.pack()
 
