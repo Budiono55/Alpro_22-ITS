@@ -20,8 +20,8 @@ def calculate():
         label_height.config(text=f"ketinggian maksimum: {ketinggian_maksimum:.2f} m")
         label_distance.config(text=f"jarak maksimum: {jarak_maksimum:.2f} m")
         
-        # Membuat array jarak dan ketinggian
-        jarak = np.linspace(0, ketinggian_maksimum, num=100)
+        # Membuat array jarak maksimum dan ketinggian maksimum
+        jarak = np.linspace(0, jarak_maksimum, num=100)
         ketinggian = kecepatan_tembak * np.sin(np.radians(sudut_tembak)) * jarak - 0.5 * gravitasi * jarak ** 2
         
         # Membuat grafik
@@ -35,7 +35,7 @@ def calculate():
         # Menyimpan data perhitungan dalam file CSV
         with open('data_perhitungan.csv', 'w', newline='') as file:
             writer = csv.writer(file)
-            writer.writerow(['Time', 'Vertical Position'])
+            writer.writerow(['jarak', 'ketinggian'])
             for t, pos in zip(jarak, ketinggian):
                 writer.writerow([t, pos])
         
