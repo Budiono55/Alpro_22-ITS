@@ -32,7 +32,7 @@ def JARAK_MAX(KECEPATAN_TEMBAK, SUDUT):
 
 
 # Membuat label dan input untuk kecepatan awal
-label_kecepatan = tk.Label(root, text="kecepatan tembak (m/s):")
+label_kecepatan = tk.Label(root,text="kecepatan tembak (m/s):")
 label_kecepatan.pack()
 entry_velocity = tk.Entry(root)
 entry_velocity.pack()
@@ -40,7 +40,7 @@ entry_velocity.pack()
 
 
 # Membuat label dan input untuk sudut
-label_sudut_tembak = tk.Label(root, text="sudut tembak (degrees):")
+label_sudut_tembak = tk.Label(root,text="sudut tembak (degrees):")
 label_sudut_tembak.pack()
 entry_sudut_tembak = tk.Entry(root)
 entry_sudut_tembak.pack()
